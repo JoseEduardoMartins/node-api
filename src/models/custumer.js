@@ -9,23 +9,18 @@ const schema = new Schema({
         required: true,
         trim: true
     },
-    telephone: {
-        type: number,
+    enterpriseName: {
+        type: String,
         required: true,
         trim: true
     },
     cpf: {
-        type: String,
-        required: true
-    },
-    price: {
         type: Number,
         required: true
     },
-    active: {
-        type: Boolean,
-        required: true,
-        default: true
+    telephone: {
+        type: Number,
+        required: true
     },
     email: [{
         type: String,
