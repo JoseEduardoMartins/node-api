@@ -22,7 +22,8 @@ exports.post = async(req, res, next) => {
             email: req.body.email,
             password: md5(req.body.passaword + global.SALT_KEY)
         });
-        emailService.send(req.body.email, 'bem vindo ao node store', global.EMAIL_TMPL.replace('{0}', req.body.name))
+
+        emailService.send(req.body.email, 'Email Confirmation ', global.EMAIL_TMPL.replace('{0}', req.body.name))
         
         res.status(201).send({
             message: 'Cliente cadstrado com sucesso!'
