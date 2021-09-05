@@ -15,6 +15,7 @@ mongoose.connect(config.connectionString);
 const Product = require('./models/product');
 const Customer = require('./models/customer');
 const Order = require('./models/order');
+const User = require('./models/User');
 
 //carrega as rotas
 const indexRoutes = require('./routes/index_route');
