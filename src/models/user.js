@@ -20,6 +20,10 @@ const schema = new Schema({
         type: String,
         required: true
     },
+    active: {
+        type: Boolean,
+        required: true
+    },
     email: {
         type: String,
         required: true

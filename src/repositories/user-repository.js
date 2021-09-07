@@ -7,6 +7,13 @@ exports.get = async() => {
     const res = await User.find({});
     return res
 }
+exports.getByEmail = async(email) => {
+    const res = await Product.findOne({
+        email: email,
+        active: true
+    }, 'email password');
+    return res
+}
 
 exports.create = async(data) => {
     var user = new User(data);

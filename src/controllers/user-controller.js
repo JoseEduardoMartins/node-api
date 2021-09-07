@@ -1,6 +1,5 @@
 'use strict';
 
-const ValidationContract = require('../validators/fluent-validator');
 const repository = require('../repositories/user-repository');
 
 exports.get = async(req, res, next) => {
@@ -13,18 +12,29 @@ exports.get = async(req, res, next) => {
         });
     }
 };
+function getByEmail(email) {
+    try {
+        let data =  repository.getByEmail(email);
+        return data;
+    } catch (error) {
+        res.status(500).send({
+            message: 'Falha ao processar sua requisição'
+        });
+    }
+    console.log(returnEmail);
+}
 
 exports.post = async(req, res, next) => {
-    let contract = new ValidationContract();
-    contract.isEmail(req.body.email, 3, 'email invalido');
-
-    //Se os dados forem invalidos
-    if (!contract.isValid()) {
-        res.status(400).send(contract.errors()).end();
-        return;
-    }
     try {
-        await repository.create(req.body)
+        await repository.create({
+            namePeople: req.body.namePeople,
+            nameCompany: req.body.nameCompany,
+            cpf: req.body.cpf,
+            number: req.body.number,
+            active: true,
+            email: req.body.email,
+            password: req.body.password
+        })
         res.status(201).send({
             message: 'Produto cadastrado com sucesso!'
         });
@@ -52,7 +62,7 @@ exports.delete = async(req, res, next) => {
     try {
         await repository.delete(req.body.id)
         res.status(200).send({
-            message: 'Produto removido com sucesso!'
+            message: 'Usuario removido com sucesso!'
         });
     } catch (error) {
         res.status(500).send({
