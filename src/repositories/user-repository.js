@@ -7,11 +7,22 @@ exports.get = async() => {
     const res = await User.find({});
     return res
 }
-exports.getByEmail = async(email) => {
-    const res = await Product.findOne({
-        email: email,
-        active: true
-    }, 'email password');
+exports.getCpf = async(cpf) => {
+    const res = await User.findOne({
+        cpf: cpf
+    }, 'cpf');
+    return res
+}
+exports.getEmail = async(email) => {
+    const res = await User.findOne({
+        email: email
+    }, 'email');
+    return res
+}
+exports.getPassword = async(password) => {
+    const res = await User.findOne({
+        password: password
+    }, 'password');
     return res
 }
 
